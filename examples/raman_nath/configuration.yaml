@@ -1,0 +1,22 @@
+random_seed: 10032023
+gas:
+  element: 87Rb
+  N_particles: 2e5
+  N_grid: !eval [2**10]
+  grid_size: 5.0e-5
+  adimensionalization_length: 780e-9
+potentials:
+  trap:
+    omegax: 100
+    omegay: 100
+initial_wavefunction:
+  gaussian_sigma: 1e-6
+propagation:
+  imaginary_time:
+    time_step: !eval [-1e-7j]
+    N_iterations: 20000
+    leave_progress_bar: False
+  real_time:
+    time_step: 1e-7
+    final_time: 3.0e-3
+    leave_progress_bar: False

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torchgpe"
+description = "Split-step Fourier integration of the Gross-Pitaevskii equation"
+readme = "README.md"
+version = "1.0.0"
+authors = [
+    {name = "Lorenzo Fioroni"},
+    {name = "Luca Gravina"},
+    {name = "Justyna Stefaniak"},
+    {name = "Alexander Baumgärtner"},
+    {name = "Fabian Finger"},
+    {name = "Davide Dreon"},
+    {name = "Tobias Donner"},
+]
+
+dependencies = [
+       "numpy",
+       "torch",
+       "scipy",
+       "matplotlib",
+       "PyYAML",
+       "tqdm",
+       "multiprocess",
+       "psutil",
+       "ffmpeg-python"
+]

@@ -1,0 +1,27 @@
+random_seed: 10032023
+gas:
+  element: 87Rb
+  N_particles: 2e5
+  N_grid: !eval [2**8]
+  grid_size: 2e-5
+  adimensionalization_length: 780e-9
+boundaries:
+  cavity_detuning: [-30e6, 0, 30]
+  lattice_depth: [0, 30, 15]
+potentials:
+  trap:
+    omegax: 400
+    omegay: 400
+  cavity:
+    atomic_detuning: -76.6e9
+    cavity_decay: 150e3
+    cavity_coupling: 1.95e6
+    cavity_angle: 0
+    pump_angle: !eval [pi/3]
+initial_wavefunction:
+  gaussian_sigma: 1e-6
+propagation:
+  imaginary_time:
+    time_step: !eval [-1e-8j]
+    N_iterations: 10000
+    leave_progress_bar: False
