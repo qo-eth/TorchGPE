@@ -1,5 +1,5 @@
 TorchGPE quickstart
-=================
+===================
 
 This page contains a quick introduction to the TorchGPE package, helping new users run their first simulations. 
 
