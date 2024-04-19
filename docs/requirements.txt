@@ -1,0 +1,6 @@
+.
+sphinx
+sphinxcontrib-napoleon
+sphinx-design
+sphinx-copybutton
+pydata-sphinx-theme
