@@ -6,7 +6,8 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-__version__ = "1.0.0"
+import importlib.metadata
+__version__ = importlib.metadata.version("torchgpe")
 
 project = 'TorchGPE'
 copyright = '2024, Quantum Optics group @ ETH Zurich'
