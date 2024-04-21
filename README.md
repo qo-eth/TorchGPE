@@ -15,7 +15,7 @@ The code uses PyTorch tensors to speed up the calculation (which heavily relies 
 import torch
 torch.cuda.is_available()
 ```
-If not, the default device is set to CPU. You can choose to run on CPU in any case, even if Cuda is available. 
+If not, the default device is set to CPU. 
 
 ### Installing via pip
 
@@ -25,15 +25,16 @@ The package can be installed via pip
 pip install git+https://github.com/qo-eth/TorchGPE.git
 ```
 
-Or, if you already downloaded the repository, run
-
+Or, if you already downloaded the repository, run 
 ```shell
 pip install .
 ```
+from the locally cloned directory.
 
 ## Documentation
 
+Full documentation for this repository is available [here](https://qo-eth.github.io/TorchGPE/).
 
 ## Credits
 
-The code was created within the [Quantum Optics](https://www.quantumoptics.ethz.ch/) research group at ETH Zurich
+The code was created within the [Quantum Optics](https://www.quantumoptics.ethz.ch/) research group at ETH Zurich.
