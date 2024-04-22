@@ -3,7 +3,7 @@ The Gas class
 
 The :class:`~torchgpe.bec2D.gas.Gas` class represents the quantum gas to be simulated.
 
-It is initialized specifying the atomic species, the number of atoms, and details on the region of space to be studied. After setting a first wave function of the gas via the psi or psik attributes, the :py:meth:`~torchgpe.bec2D.gas.Gas.ground_state` and :py:meth:`~torchgpe.bec2D.gas.Gas.propagate` methods can be used to evolve the wave function in time. :py:meth:`~torchgpe.bec2D.gas.Gas.ground_state` performs imaginary time evolution to find the ground state of the system, while :py:meth:`~torchgpe.bec2D.gas.Gas.propagate` performs real time evolution to study its dynamics. Both methods use the split-step Fourier method to solve the Gross-Pitaevskii equation.
+It is initialized specifying the atomic species, the number of atoms, and details on the region of space to be studied. After setting a first wave function of the gas via the :py:attr:`~torchgpe.bec2D.gas.Gas.psi` or :py:attr:`~torchgpe.bec2D.gas.Gas.psik` attributes, the :py:meth:`~torchgpe.bec2D.gas.Gas.ground_state` and :py:meth:`~torchgpe.bec2D.gas.Gas.propagate` methods can be used to evolve the wave function in time. :py:meth:`~torchgpe.bec2D.gas.Gas.ground_state` performs imaginary time evolution to find the ground state of the system, while :py:meth:`~torchgpe.bec2D.gas.Gas.propagate` performs real time evolution to study its dynamics. Both methods use the split-step Fourier method to solve the Gross-Pitaevskii equation.
 
 The atomic species is specified by the :py:attr:`element` parameter, which is a string (``'87Rb'`` by default). If :py:attr:`element` is a species supported by GPE, its parameters are automatically loaded. The only supported species at the moment are ``'87Rb'`` and ``'39K'``, which are defined in  :py:attr:`~torchgpe.utils.elements.elements_dict`. This is a dictionary where each element is associated with its mass and the angular frequency of its :math:`d_2` line, e.g.:
 
@@ -109,13 +109,13 @@ and making use of the Baker-Campbell-Hausdorff formula, one can write
       &= e^{\tilde{T}/2}e^{\tilde{V}}e^{\tilde{T}/2}\exp(-\frac{1}{2}\left[\tilde{T}/2,\tilde{V}\right] -\frac{1}{2}\left[\tilde{V},\tilde{T}/2\right] + \mathcal{O}\left(\Delta t^3\right))\\
       &= e^{\tilde{T}/2}e^{\tilde{V}}e^{\tilde{T}/2}e^{\mathcal{O}\left(\Delta t^3\right)}.
 
-That is, the subsequent application of the kinetic propagator :math:`e^{\tilde{T}/2}` followed by the potential one :math:`e^{\tilde{V}` and the kinetic propagator one last time is equivalent to the application of the full operator :math:`U` up to third order in :math:`\Delta t`.
+That is, the subsequent application of the kinetic propagator :math:`e^{\tilde{T}/2}` followed by the potential one :math:`e^{\tilde{V}}` and the kinetic propagator one last time is equivalent to the application of the full operator :math:`U` up to third order in :math:`\Delta t`.
 
 
 Ground state
 ************
 
-The :py:meth:`~torchgpe.bec2D.gas.Gas.ground_state` method uses the split-step Fourier method to evolve the wave function in imaginary time to find the ground state of the system. The method takes as input the number of iterations to perform, the time step to use, the list of the potentials acting on the system and, optionally, a set of callbacks to monitor the evolution. Note that imaginary time evolution does not support the use of a time-dependent potential. After checking that the time step is indeed a purelly imaginary number, the method integrates the Gross Pitaevskii equation taking care of renormalising the wave function after each step. At the end of the propagation, the :py:obj:`~torchgpe.bec2D.gas.Gas.psi` and :py:obj:`~torchgpe.bec2D.gas.Gas.psik` attributes are updated to the final wave function.
+The :py:meth:`~torchgpe.bec2D.gas.Gas.ground_state` method uses the split-step Fourier method to evolve the wave function in imaginary time to find the ground state of the system. The method takes as input the number of iterations to perform, the time step to use, the list of the potentials acting on the system and, optionally, a set of callbacks to monitor the evolution. Note that imaginary time evolution does not support the use of a time-dependent potential. After checking that the time step is indeed a purely imaginary number, the method integrates the Gross Pitaevskii equation taking care of renormalising the wave function after each step. At the end of the propagation, the :py:obj:`~torchgpe.bec2D.gas.Gas.psi` and :py:obj:`~torchgpe.bec2D.gas.Gas.psik` attributes are updated to the final wave function.
 
 Real time propagation
 *********************

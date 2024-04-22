@@ -19,7 +19,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-
+/docs/_build
 
 # IPython notebooks
 .ipynb_checkpoints

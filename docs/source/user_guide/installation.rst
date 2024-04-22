@@ -10,7 +10,7 @@ You can clone and install the package from the GitLab repository via pip:
 
 .. code-block:: console
 
-    $ pip install git+ssh://git@github.com:qo-eth/TorchGPE.git
+    $ pip3 install git+https://github.com/qo-eth/TorchGPE.git
 
 
 .. .. note::

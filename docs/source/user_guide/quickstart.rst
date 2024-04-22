@@ -67,7 +67,7 @@ Both the harmonic trap and the contact interaction potentials are already implem
     contact = Contact(a_s = 100)
     trap = Trap(omegax = 400, omegay = 400)
 
-The code above initializes a harmonic trap with frequencies along :math:`x` and :math:`y` of :math:`400\,\text{Hz}`, and sets up contact interactions between the particles with a scattering length of :math:`100\,a_{Bohr}`.
+The code above initializes a harmonic trap with frequencies along :math:`x` and :math:`y` of :math:`400\,\text{Hz}`, and sets up contact interactions between the particles with a scattering length of :math:`100\,a_{\mathrm{Bohr}}`.
 
 .. note:: 
 
