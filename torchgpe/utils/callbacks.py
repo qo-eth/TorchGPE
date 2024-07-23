@@ -20,6 +20,7 @@ class Callback(metaclass=ABCMeta):
 
     def set_propagation_params(self, propagation_params):
         self.propagation_params = propagation_params
+        self.early_stop = False
 
     def on_propagation_begin(self):
         """Function called by the :class:`gpe.bec2D.gas.Gas` class before the simulation begins
@@ -42,6 +43,8 @@ class Callback(metaclass=ABCMeta):
     def on_epoch_end(self, epoch: int):
         """Function called by the :class:`gpe.bec2D.gas.Gas` at the end of each epoch
 
+        If the callback sets the :py:attr:`gpe.utils.callbacks.Callback.early_stop` variable to ``True``, the simulation will stop right after this function is called.
+        
         Args:
             epoch (int): The epoch number
         """
@@ -49,13 +52,13 @@ class Callback(metaclass=ABCMeta):
 
 
 class LInfNorm(Callback):
-    """Callback computing the :math:`L_\infty` norm of the wavefunction
+    """Callback computing the :math:`L_\\infty` norm of the wavefunction
 
-    The :math:`L_\infty` norm is defined as:
+    The :math:`L_\\infty` norm is defined as:
 
     .. math::
 
-        L_\infty = \\text{max}_{(x,y)}|\Psi_t - \Psi_{t+\\Delta t}|
+        L_\\infty = \\text{max}_{(x,y)}|\\Psi_t - \\Psi_{t+\\Delta t}|
 
     Args:
         compute_every (int): Optional. The number of epochs after which the norm is computed. Defaults to 1.
@@ -83,7 +86,7 @@ class LInfNorm(Callback):
 
     def on_epoch_end(self, epoch: int):
         """At the end of an epoch, if its number is a multiple of ``compute_every`` uses the stored wave function of the gas to compute 
-        the :math:`L_\infty` norm. If the epoch number is a multiple of ``print_every`` as well, the value of the norm is printed on screen.
+        the :math:`L_\\infty` norm. If the epoch number is a multiple of ``print_every`` as well, the value of the norm is printed on screen.
 
         Args:
             epoch (int): The epoch number
@@ -108,7 +111,7 @@ class L1Norm(Callback):
 
     .. math::
 
-        L_1 = \sum_{(x,y)}|\Psi_t - \Psi_{t+\\Delta t}| \, dx \, dy
+        L_1 = \\sum_{(x,y)}|\\Psi_t - \\Psi_{t+\\Delta t}| \\, dx \\, dy
 
     Args:
         compute_every (int): Optional. The number of epochs after which the norm is computed. Defaults to 1.
@@ -162,7 +165,7 @@ class L2Norm(Callback):
 
     .. math::
 
-        L_2 = \sqrt{\sum_{(x,y)}|\Psi_t - \Psi_{t+\\Delta t}|^2 \, dx \, dy}
+        L_2 = \\sqrt{\\sum_{(x,y)}|\\Psi_t - \\Psi_{t+\\Delta t}|^2 \\, dx \\, dy}
 
     Args:
         compute_every (int): Optional. The number of epochs after which the norm is computed. Defaults to 1.

@@ -39,9 +39,12 @@ def imaginary_time_propagation(gas, potentials, time_step, N_iterations, callbac
         # One step of the split-step Fourier method
         propagation_step(gas, total_linear_potential, [],
                          nonlinear_potentials, [], kinetic_propagator, time_step)
-
+        
         for callback in callbacks:
             callback.on_epoch_end(epoch)
+
+        if any(callback.early_stop for callback in callbacks): # TODO: There is no record of the early stop for the moment. The evolution is just interrupted. This should be fixed.
+            break
 
     for callback in callbacks:
         callback.on_propagation_end()
