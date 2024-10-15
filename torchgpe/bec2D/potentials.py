@@ -181,9 +181,10 @@ class DispersiveCavity(NonLinearPotential):
         cavity_angle (float, optional): The angle in the 2D plane of the cavity. Defaults to :math:`0`
         pump_angle (float, optional): The angle in the 2D plane of the transversal pump. Defaults to :math:`\\pi/3`
         waist (float, optional): the waist of the gaussian beam. Defaults to infinity
+        cavity_probe (Union[float, Callable], optional): The on-axis cavity probe. It can be set to be either a constant or a function of time. Defaults to :math:`0`
     """
 
-    def __init__(self, lattice_depth: Union[float, Callable], atomic_detuning: float, cavity_detuning: Union[float, Callable], cavity_decay: float, cavity_coupling: float, cavity_angle: float = 0, pump_angle: float = np.pi/3, waist: float = np.inf):
+    def __init__(self, lattice_depth: Union[float, Callable], atomic_detuning: float, cavity_detuning: Union[float, Callable], cavity_decay: float, cavity_coupling: float, cavity_angle: float = 0, pump_angle: float = np.pi/3, waist: float = np.inf, cavity_probe: Union[float, Callable] = 0):
 
         super().__init__()
 
@@ -195,13 +196,15 @@ class DispersiveCavity(NonLinearPotential):
         self.cavity_angle = cavity_angle
         self.pump_angle = pump_angle
         self.waist = waist
+        self.cavity_probe = cavity_probe
 
     def on_propagation_begin(self):
         self.is_time_dependent = any_time_dependent_variable(
-            self.cavity_detuning, self.lattice_depth)
+            self.cavity_detuning, self.lattice_depth, self.cavity_probe)
 
         self._cavity_detuning = time_dependent_variable(self.cavity_detuning)
         self._lattice_depth = time_dependent_variable(self.lattice_depth)
+        self._cavity_probe = time_dependent_variable(self.cavity_probe)
 
         self.g0 = 2*np.pi*self.cavity_coupling
         self._atomic_detuning = 2*np.pi*self.atomic_detuning
@@ -253,7 +256,7 @@ class DispersiveCavity(NonLinearPotential):
 
         self.eta = np.sqrt(self._lattice_depth(time))*self.eta_prefactor
 
-        alpha = self.c1*self.eta*order/self.c6
+        alpha = (self.c1*self.eta*order + self._cavity_probe(time)*(self.Er/spconsts.hbar))/self.c6
 
         return alpha
 

@@ -173,11 +173,14 @@ DispersiveCavity
 - :py:attr:`cavity_angle` (the angle of the cavity with respect to the horizontal),
 - :py:attr:`pump_angle` (the angle of the pump with respect to the horizontal),
 - :py:attr:`waist` (the waist of the gaussian pump beam).
+- :py:attr:`cavity_probe` (the on-axis probe field. Supports time-dependent parameters).
 
 Note that the lattice depth is expressed in units of the recoil energy :math:`E_r = \hbar^2 k^2 / 2m`, where the wave number :math:`k` is computed from the :math:`d_2` pulse of the atomic species the gas is made of, and the specified atomic detuning.
 Additionally, observe that :py:attr:`atomic_detuning`, :py:attr:`cavity_detuning` and :py:attr:`cavity_decay` have to be considered frequencies. The corresponding rates are obtained by the potential itself, by multiplying them by :math:`2 \pi`.
 
-Finally, :py:attr:`waist` is the waist of the gaussian pump beam. It defaults to infinity, which corresponds to a plane wave. Note that differently from the :class:`~torchgpe.bec2D.potentials.Lattice` potential, the :class:`~torchgpe.bec2D.potentials.DispersiveCavity` potential does not account for the wavefront curvature and the Gouy phase. 
+:py:attr:`waist` is the waist of the gaussian pump beam. It defaults to infinity, which corresponds to a plane wave. Note that differently from the :class:`~torchgpe.bec2D.potentials.Lattice` potential, the :class:`~torchgpe.bec2D.potentials.DispersiveCavity` potential does not account for the wavefront curvature and the Gouy phase. 
+
+Finally, an additional on-axis probe field can be added to the potential via the :py:attr:`cavity_probe`. This is useful to study the response of the system to a perturbation. A pre-defined probe field is defined in :py:meth:`~torchgpe.utils.potentials.probe_pulse`
 
 .. image:: ../_static/fundamentals_cavity_angles.svg
     :align: center

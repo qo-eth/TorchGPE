@@ -110,3 +110,4 @@ Time dependent variables
     ~linear_ramp
     ~s_ramp
     ~quench
+    ~probe_pulse
