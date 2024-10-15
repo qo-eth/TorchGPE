@@ -256,7 +256,6 @@ class DispersiveCavity(NonLinearPotential):
 
         self.eta = np.sqrt(self._lattice_depth(time))*self.eta_prefactor
 
-        alpha = self.c1*self.eta*order/self.c6
         alpha = (self.c1*self.eta*order + self._cavity_probe(time)*(self.Er/spconsts.hbar))/self.c6
 
         return alpha
