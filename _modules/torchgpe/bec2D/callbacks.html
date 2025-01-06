@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>torchgpe.bec2D.callbacks &#8212; TorchGPE 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/style.css?v=d110ab36" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/torchgpe/bec2D/callbacks';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">TorchGPE package documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://www.quantumoptics.ethz.ch">
+    Quantum Optics group
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/torchgpe" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qo-eth/TorchGPE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://www.quantumoptics.ethz.ch">
+    Quantum Optics group
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/torchgpe" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qo-eth/TorchGPE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">torchgpe.bec2D.callbacks</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for torchgpe.bec2D.callbacks</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">fcntl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ffmpeg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shutil</span><span class="w"> </span><span class="kn">import</span> <span class="n">rmtree</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ticker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.potentials</span><span class="w"> </span><span class="kn">import</span> <span class="n">DispersiveCavity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.potentials</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearPotential</span><span class="p">,</span> <span class="n">NonLinearPotential</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi_tick_formatter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.gridspec</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSpec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_yes_no</span><span class="p">,</span> <span class="n">enumerate_chunk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1.axes_divider</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.auto</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogNorm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">multiprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">atexit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">signal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callback</span>
+
+
+<div class="viewcode-block" id="CavityMonitor">
+<a class="viewcode-back" href="../../../api/callbacks.html#torchgpe.bec2D.callbacks.CavityMonitor">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CavityMonitor</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Callback monitoring the time dependent parameters of a dispersive cavity and its field.</span>
+
+<span class="sd">    During the simulation, the values of cavity detuning, pump strength and cavity field are stored. Once the simulation is finished, the saved parameters are accessible via the :py:attr:`gpe.bec2D.callbacks.CavityMonitor.alpha`, :py:attr:`gpe.bec2D.callbacks.CavityMonitor.pump` and :py:attr:`gpe.bec2D.callbacks.CavityMonitor.cavity_detuning` tensors.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        dispersive_cavity (DispersiveCavity): The cavity to be monitored.</span>
+<span class="sd">        save_every (int): Optional. The number of epochs after which the parameters should be saved. Defaults to 1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dispersive_cavity</span><span class="p">:</span> <span class="n">DispersiveCavity</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_every</span> <span class="o">=</span> <span class="n">save_every</span>
+        <span class="c1">#: list(float): A list of the pump strengths. It is a list of lists, where each inner list contains the pump strengths for a single propagation. At the end of the simulation, it is converted to a PyTorch tensor.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pump</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1">#: list(float): A list of the cavity detunings. It is a list of lists, where each inner list contains the cavity detunings for a single propagation. At the end of the simulation, it is converted to a PyTorch tensor.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cavity_detuning</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1">#: list(complex): A list of the cavity field amplitudes. It is a list of lists, where each inner list contains the cavity field amplitudes for a single propagation. At the end of the simulation, it is converted to a PyTorch tensor.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1">#: list(float): A list of the times at which the parameters were saved. It is a list of lists, where each inner list contains the times for a single propagation. At the end of the simulation, it is converted to a PyTorch tensor.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cavity</span> <span class="o">=</span> <span class="n">dispersive_cavity</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_propagation_begin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pump</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cavity_detuning</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_every</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">time</span> <span class="o">=</span> <span class="n">epoch</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">propagation_params</span><span class="p">[</span><span class="s2">&quot;time_step&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cavity</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pump</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cavity</span><span class="o">.</span><span class="n">_lattice_depth</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cavity_detuning</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cavity</span><span class="o">.</span><span class="n">_cavity_detuning</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_propagation_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pump</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pump</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cavity_detuning</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cavity_detuning</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Animation">
+<a class="viewcode-back" href="../../../api/callbacks.html#torchgpe.bec2D.callbacks.Animation">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Animation</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Callback generating an animation of the propagation of the wavefunction.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        output_file (str): The path where to store the mp4 animation.</span>
+<span class="sd">        save_every (int): Optional. The number of epochs after which a frame of the animation is saved. Defaults to 1.</span>
+<span class="sd">        fps (int): Optional. The number of frames per second of the animation. Defaults to 25.</span>
+<span class="sd">        cores (int): Optional. The number of cores to use for the generation of the images. Defaults to 1.</span>
+<span class="sd">        density (bool): Optional. Whether to plot the real space density. Defaults to True.</span>
+<span class="sd">        phase (bool): Optional. Whether to plot the phase. Defaults to True.</span>
+<span class="sd">        densityk (bool): Optional. Whether to plot the momentum space density. Defaults to False.</span>
+<span class="sd">        potentials (bool): Optional. Whether to plot the potential landscape. Defaults to False.</span>
+<span class="sd">        cavities (list): Optional. A list of :class:`gpe.bec2D.potentials.DispersiveCavity` objects to monitor. Defaults to [].</span>
+<span class="sd">        time_dependent_variables (list): Optional. A list of tuples of the form (label, function) where label is a string and function is a function of time returning a float. The value of the function will be plotted as a function of time. Defaults to [].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">save_every</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">densityk</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">potentials</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cavities</span><span class="o">=</span><span class="p">[],</span> <span class="n">time_dependent_variables</span><span class="o">=</span><span class="p">[]):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_every</span> <span class="o">=</span> <span class="n">save_every</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_folder</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="n">output_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="n">fps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N_cores</span> <span class="o">=</span> <span class="n">cores</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plot_density</span> <span class="o">=</span> <span class="n">density</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plot_phase</span> <span class="o">=</span> <span class="n">phase</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plot_densityk</span> <span class="o">=</span> <span class="n">densityk</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plot_potentials</span> <span class="o">=</span> <span class="n">potentials</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time_dependent_variables</span> <span class="o">=</span> <span class="n">time_dependent_variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tdv_history</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_dependent_variables</span><span class="p">))]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cavities</span> <span class="o">=</span> <span class="n">cavities</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cavities_history</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cavities</span><span class="p">))]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_times</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_folder</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The output folder does not exist&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">prompt_yes_no</span><span class="p">(</span><span class="s2">&quot;The specified file already exists. Are you sure you want to overwrite it? Y/n&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The output file already exists&quot;</span><span class="p">)</span>
+
+        <span class="n">N_2d_plots</span> <span class="o">=</span> <span class="n">density</span> <span class="o">+</span> <span class="n">phase</span> <span class="o">+</span> <span class="n">densityk</span> <span class="o">+</span> <span class="n">potentials</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N_1d_plots</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">cavities</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">time_dependent_variables</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span> <span class="o">=</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">N_2d_plots</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">N_2d_plots</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_rows</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">N_2d_plots</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="k">if</span> <span class="n">N_2d_plots</span> <span class="o">%</span>
+                       <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">N_1d_plots</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_height_ratios</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rows</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">N_1d_plots</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_height_ratios</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">N_1d_plots</span><span class="p">)</span>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_register_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;.GPE_animation_cleanup.json&quot;</span><span class="p">),</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">fcntl</span><span class="o">.</span><span class="n">flock</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">LOCK_EX</span><span class="p">)</span>  <span class="c1"># Acquire exclusive lock</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">existing_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">EOFError</span><span class="p">):</span>
+                <span class="n">existing_data</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The executions register file does not exist and it will be created. If, before now, you have run the animation callback and the process has been interrupted, there might be some leftover temporary folders. Please, check the folder /tmp/ and delete eventual temporary folders manually.&quot;</span><span class="p">)</span>
+            
+            <span class="n">existing_data</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">pid</span><span class="p">),</span> <span class="p">[])</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">])</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">existing_data</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="n">fcntl</span><span class="o">.</span><span class="n">flock</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">LOCK_UN</span><span class="p">)</span>  <span class="c1"># Release lock</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_deregister_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">pid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">pid</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;.GPE_animation_cleanup.json&quot;</span><span class="p">),</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">fcntl</span><span class="o">.</span><span class="n">flock</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">LOCK_EX</span><span class="p">)</span>  <span class="c1"># Acquire exclusive lock</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">existing_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">EOFError</span><span class="p">):</span>
+                <span class="n">existing_data</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">if</span> <span class="n">pid</span> <span class="ow">in</span> <span class="n">existing_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">folder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">clear_dir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+                    <span class="n">existing_data</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">existing_data</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="k">if</span> <span class="n">f</span> <span class="o">!=</span> <span class="n">folder</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">existing_data</span><span class="p">[</span><span class="n">pid</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">del</span> <span class="n">existing_data</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">existing_data</span><span class="p">[</span><span class="n">pid</span><span class="p">]:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">clear_dir</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">existing_data</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">existing_data</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+            <span class="n">fcntl</span><span class="o">.</span><span class="n">flock</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">fcntl</span><span class="o">.</span><span class="n">LOCK_UN</span><span class="p">)</span>  <span class="c1"># Release lock</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_clean_leftovers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span> 
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;.GPE_animation_cleanup.json&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">runs</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">runs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">psutil</span><span class="o">.</span><span class="n">pid_exists</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">)):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_deregister_run</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">,</span> <span class="ne">FileNotFoundError</span><span class="p">):</span>
+            <span class="k">return</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">dir</span><span class="p">):</span>  
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+            <span class="n">rmtree</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_propagation_begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;At the beginning of the simulation, creates a temporary folder where to store the images and initializes the variables used to store the data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            epoch (int): The epoch number</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+
+        <span class="c1"># Register the temporary folder for deletion at exit and on SIGINT. Check if the folder exists before deleting it to avoid errors</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_clean_leftovers</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_register_run</span><span class="p">()</span>
+
+        <span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clear_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">)</span>
+        <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">sig</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clear_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deregister_run</span><span class="p">(),</span> <span class="n">signal</span><span class="o">.</span><span class="n">default_int_handler</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="p">)</span>
+        <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">sig</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clear_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deregister_run</span><span class="p">(),</span> <span class="n">signal</span><span class="o">.</span><span class="n">default_int_handler</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tensor_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_potentials</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_potentials</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagation_params</span><span class="p">[</span><span class="s2">&quot;potentials&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_density</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_densityk</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_potential</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">propagation_params</span><span class="p">[</span><span class="s2">&quot;N_iterations&quot;</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">save_every</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The animation is going to generate many frames. Consider increasing the save_every parameter.&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;After each epoch, if the epoch number is a multiple of ``save_every``, saves the data to the temporary folder.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            epoch (int): The epoch number</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_every</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">time</span> <span class="o">=</span> <span class="n">epoch</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">propagation_params</span><span class="p">[</span><span class="s2">&quot;time_step&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_density</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">density</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">),</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;density_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tensor_index</span><span class="si">}</span><span class="s2">.torch&quot;</span><span class="p">))</span>
+            <span class="n">max_density</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">density</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">max_density</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_density</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_max_density</span> <span class="o">=</span> <span class="n">max_density</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_phase</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">phase</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">),</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;phase_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tensor_index</span><span class="si">}</span><span class="s2">.torch&quot;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_densityk</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">densityk</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">),</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;densityk_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tensor_index</span><span class="si">}</span><span class="s2">.torch&quot;</span><span class="p">))</span>
+            <span class="n">max_densityk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">densityk</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">max_densityk</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_densityk</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_max_densityk</span> <span class="o">=</span> <span class="n">max_densityk</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_potentials</span><span class="p">:</span>
+            <span class="n">total_potential</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+                <span class="n">potential</span><span class="o">.</span><span class="n">get_potential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span> <span class="k">for</span> <span class="n">potential</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_potentials</span> <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">potential</span><span class="p">),</span> <span class="n">LinearPotential</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">total_potential</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span>
+                <span class="n">potential</span><span class="o">.</span><span class="n">potential_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span> <span class="k">for</span> <span class="n">potential</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_potentials</span> <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">potential</span><span class="p">),</span> <span class="n">NonLinearPotential</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">total_potential</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">),</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;potential_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tensor_index</span><span class="si">}</span><span class="s2">.torch&quot;</span><span class="p">))</span>
+            <span class="n">max_potential</span> <span class="o">=</span> <span class="n">total_potential</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">max_potential</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_potential</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_max_potential</span> <span class="o">=</span> <span class="n">max_potential</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cavities</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cavity</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cavities</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_cavities_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">cavity</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">psi</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_dependent_variables</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">[</span><span class="n">label</span><span class="p">,</span> <span class="n">variable</span><span class="p">]</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_dependent_variables</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tdv_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">variable</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tensor_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_plot_stored</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plots the data stored in the temporary folder. </span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            params (list): A list of tuples of the form (image_index, time) where image_index is the index of the image to be plotted and time is the in-simulation time at which the image was saved.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+            <span class="n">image_index</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">param</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span>
+                <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="p">,</span> <span class="mi">6</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rows</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">N_1d_plots</span><span class="p">))</span>
+            <span class="n">gs</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span>
+                          <span class="n">height_ratios</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_height_ratios</span><span class="p">)</span>
+
+            <span class="n">row_index</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">col_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_density</span><span class="p">:</span>
+                <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span> <span class="n">col_index</span><span class="p">])</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Y</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;density_</span><span class="si">{</span><span class="n">image_index</span><span class="si">}</span><span class="s2">.torch&quot;</span><span class="p">),</span> <span class="n">map_location</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">),</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">(</span><span class="n">vmax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_density</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">),</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+                <span class="n">ax_divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+                <span class="n">cax</span> <span class="o">=</span> <span class="n">ax_divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;6%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="s2">&quot;2%&quot;</span><span class="p">)</span>
+                <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$y$&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Real space density&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">col_index</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">col_index</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">row_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">col_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_phase</span><span class="p">:</span>
+                <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span> <span class="n">col_index</span><span class="p">])</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Y</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;phase_</span><span class="si">{</span><span class="n">image_index</span><span class="si">}</span><span class="s2">.torch&quot;</span><span class="p">),</span> <span class="n">map_location</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">),</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">)</span>
+                <span class="n">ax_divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+                <span class="n">cax</span> <span class="o">=</span> <span class="n">ax_divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;6%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="s2">&quot;2%&quot;</span><span class="p">)</span>
+                <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">ticker</span><span class="o">.</span><span class="n">FuncFormatter</span><span class="p">(</span>
+                    <span class="n">pi_tick_formatter</span><span class="p">),</span> <span class="n">ticks</span><span class="o">=</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$y$&quot;</span><span class="p">)</span>  <span class="c1"># account for units and set title</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Phase&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">col_index</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">col_index</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">row_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">col_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_densityk</span><span class="p">:</span>
+                <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span> <span class="n">col_index</span><span class="p">])</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Kx</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Ky</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;densityk_</span><span class="si">{</span><span class="n">image_index</span><span class="si">}</span><span class="s2">.torch&quot;</span><span class="p">),</span> <span class="n">map_location</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">),</span> <span class="n">norm</span><span class="o">=</span><span class="n">LogNorm</span><span class="p">(</span><span class="n">vmax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_densityk</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">),</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+                <span class="n">ax_divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+                <span class="n">cax</span> <span class="o">=</span> <span class="n">ax_divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;6%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="s2">&quot;2%&quot;</span><span class="p">)</span>
+                <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$kx$&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$ky$&quot;</span><span class="p">)</span>  <span class="c1"># account for units and set title</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Momentum space density&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">col_index</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">col_index</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">row_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">col_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_potentials</span><span class="p">:</span>
+                <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span> <span class="n">col_index</span><span class="p">])</span>
+                <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Y</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;potential_</span><span class="si">{</span><span class="n">image_index</span><span class="si">}</span><span class="s2">.torch&quot;</span><span class="p">),</span> <span class="n">map_location</span><span class="o">=</span><span class="s2">&quot;cpu&quot;</span><span class="p">),</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_potential</span><span class="p">)</span>
+                <span class="n">ax_divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+                <span class="n">cax</span> <span class="o">=</span> <span class="n">ax_divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;6%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="s2">&quot;2%&quot;</span><span class="p">)</span>
+                <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$y$&quot;</span><span class="p">)</span>  <span class="c1"># account for units and set title</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Potential landscape&quot;</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">col_index</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                    <span class="n">col_index</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">row_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">col_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cavities</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">history</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cavities_history</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span> <span class="p">:])</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">[</span><span class="n">image_index</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">history</span><span class="p">))</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$t$ [$ms$]&quot;</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$|\alpha|$&quot;</span><span class="p">)</span>  <span class="c1"># account for units and title</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cavity </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> field&quot;</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">col_index</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">row_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span> <span class="p">:])</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">[</span><span class="n">image_index</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">history</span><span class="p">))</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$t$ [$ms$]&quot;</span><span class="p">)</span>
+                    <span class="c1"># account for units and title</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$Arg(\alpha)$&quot;</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">col_index</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">row_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_dependent_variables</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">[</span><span class="n">label</span><span class="p">,</span> <span class="n">variable</span><span class="p">]</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_time_dependent_variables</span><span class="p">):</span>
+                    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span> <span class="p">:])</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">[</span><span class="n">image_index</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tdv_history</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$t$ [$ms$]&quot;</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$V$&quot;</span><span class="p">)</span>  <span class="c1"># account for units and title</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+                    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">col_index</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="n">row_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">propagation_params</span><span class="p">[</span><span class="s2">&quot;time_step&quot;</span><span class="p">],</span> <span class="nb">float</span><span class="p">):</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;t: </span><span class="si">{</span><span class="n">time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                                <span class="n">right</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+            <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">image_index</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_propagation_end</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;At the end of the simulation, generates the animation and saves it to the specified path.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ctx</span> <span class="o">=</span> <span class="n">multiprocess</span><span class="o">.</span><span class="n">get_context</span><span class="p">(</span><span class="s2">&quot;spawn&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_cores</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plot_stored</span><span class="p">,</span> <span class="n">enumerate_chunk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_times</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N_cores</span><span class="p">)))),</span>
+                     <span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">N_cores</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Picture generation&quot;</span><span class="p">,</span> <span class="n">bar_format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{l_bar}{bar}</span><span class="s1">| </span><span class="si">{n_fmt}</span><span class="s1">/</span><span class="si">{total_fmt}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Merging the pictures into a movie...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="p">(</span>
+            <span class="n">ffmpeg</span>
+            <span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">.png&quot;</span><span class="p">),</span> <span class="n">framerate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fps</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span> <span class="n">pix_fmt</span><span class="o">=</span><span class="s1">&#39;yuv420p&#39;</span><span class="p">,</span> <span class="n">vcodec</span><span class="o">=</span><span class="s1">&#39;libx264&#39;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">global_args</span><span class="p">(</span><span class="s2">&quot;-nostats&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">global_args</span><span class="p">(</span><span class="s2">&quot;-loglevel&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">overwrite_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Animation saved to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deregister_run</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_dir</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Quantum Optics group @ ETH Zurich.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

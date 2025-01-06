@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Using configuration files &#8212; TorchGPE 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d110ab36" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/extending_torchgpe.configuration_files';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Defining custom potentials" href="extending_torchgpe.custom_potentials.html" />
+    <link rel="prev" title="Advanced usage" href="extending_torchgpe.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">TorchGPE package documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://www.quantumoptics.ethz.ch">
+    Quantum Optics group
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/torchgpe" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qo-eth/TorchGPE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://www.quantumoptics.ethz.ch">
+    Quantum Optics group
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/torchgpe" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qo-eth/TorchGPE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+</form></div>
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About the package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">TorchGPE quickstart</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="fundamentals.html">Basic usage</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals.gas_class.html">The Gas class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals.potentials.html">Potentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals.callbacks.html">Callbacks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="extending_torchgpe.html">Advanced usage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Using configuration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending_torchgpe.custom_potentials.html">Defining custom potentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending_torchgpe.custom_callbacks.html">Defining custom callbacks</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="extending_torchgpe.html" class="nav-link">Advanced usage</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Using configuration files</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="using-configuration-files">
+<h1>Using configuration files<a class="headerlink" href="#using-configuration-files" title="Link to this heading">#</a></h1>
+<p>Sometimes it is useful to define the parameters for the simulations in a separate file. In this case, we suggest to use YAML configuration files, which allow for the definition of lists and dictionaries. Moreover, a custom parser is included in the GPE package to also allow for the evaluation of simple mathematical expressions.</p>
+<p>Once a configuration file is defined and stored in the <code class="docutils literal notranslate"><span class="pre">path.yaml</span></code> file, its contents can be parsed using the <a class="reference internal" href="../stubs/torchgpe.utils.configuration.parse_config.html#torchgpe.utils.configuration.parse_config" title="torchgpe.utils.configuration.parse_config"><code class="xref py py-meth docutils literal notranslate"><span class="pre">parse_config()</span></code></a> function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span><span class="w"> </span><span class="nn">torchgpe.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_config</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">data</span> <span class="o">=</span> <span class="n">parse_config</span><span class="p">(</span><span class="s1">&#39;path.yaml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the following, we are going to give a few examples for a quick start using configuration files.</p>
+<section id="data-types">
+<h2>Data types<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h2>
+<p>Lists can be defined in a single line as <code class="docutils literal notranslate"><span class="pre">[first_element,</span> <span class="pre">second_element,</span> <span class="pre">third_element]</span></code> or by writing each element in a different line, as in the example below:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">first_element</span>
+<span class="linenos">2</span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">second_element</span>
+<span class="linenos">3</span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">third_element</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The space after the <code class="docutils literal notranslate"><span class="pre">-</span></code> character is mandatory.</p>
+</div>
+<p>Regardless of which one of the two notations you decide to use, the parser will output a python list.</p>
+<p>Analogously, dictionaries can be defined in a single line as <code class="docutils literal notranslate"><span class="pre">{first_key:</span> <span class="pre">first_element,</span> <span class="pre">second_key:</span> <span class="pre">second_element,</span> <span class="pre">third_key:</span> <span class="pre">third_element}</span></code> or by writing each element in a different line, as in the example below:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">first_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">first_element</span>
+<span class="linenos">2</span><span class="nt">second_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">second_element</span>
+<span class="linenos">3</span><span class="nt">third_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">third_element</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The space after the <code class="docutils literal notranslate"><span class="pre">:</span></code> character is mandatory.</p>
+</div>
+<p>Regardless of which one of the two notations you decide to use, the parser will output a python dictionary.</p>
+<p>Of course lists and dictionaries can be mixed. For example, a dictionary can be an element of a list and viceversa:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">first_key</span><span class="p">:</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+<span class="linenos"> 5</span><span class="nt">second_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">second_element</span>
+<span class="linenos"> 6</span><span class="nt">third_key</span><span class="p">:</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a1</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b1</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">k1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k2</span>
+<span class="linenos">10</span><span class="w">      </span><span class="nt">k3</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k4</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The indentation level is not important, as long as it is consistent. For example, both the following lists are valid:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">first_key</span><span class="p">:</span>
+<span class="linenos">2</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="linenos">3</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="linenos">4</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c</span>
+<span class="linenos">5</span><span class="nt">second_key</span><span class="p">:</span>
+<span class="linenos">6</span><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a1</span>
+<span class="linenos">7</span><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b1</span>
+<span class="linenos">8</span><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">c1</span>
+</pre></div>
+</div>
+<p>Conversely, the following is not a valid list:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">first_key</span><span class="p">:</span>
+<span class="linenos">2</span><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="linenos">3</span><span class="w w-Error">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="linenos">4</span><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- c</span>
+</pre></div>
+</div>
+</div>
+<p>The example below shows how to use the parser to input the most common data types:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                </span><span class="c1"># parses to &#39;a&#39; -&gt; 1 where &#39;a&#39; is a string and 1 is an integer</span>
+<span class="linenos">2</span><span class="nt">b</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0</span><span class="w">              </span><span class="c1"># parses to &#39;b&#39; -&gt; 2.0 where &#39;b&#39; is a string and 2.0 is a float</span>
+<span class="linenos">3</span><span class="nt">c</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1e3</span><span class="w">              </span><span class="c1"># parses to &#39;c&#39; -&gt; 1000.0 where &#39;c&#39; is a string and 1000.0 is a float</span>
+<span class="linenos">4</span><span class="nt">d</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e</span><span class="w">                </span><span class="c1"># parses to &#39;d&#39; -&gt; &#39;e&#39; where both &#39;d&#39; and &#39;e&#39; are strings</span>
+<span class="linenos">5</span><span class="nt">f</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">g</span><span class="p p-Indicator">]</span><span class="w">      </span><span class="c1"># parses to &#39;f&#39; -&gt; [1, 2.0, &#39;g&#39;] where &#39;f&#39; is a string and [1, 2.0, &#39;g&#39;] is a list</span>
+<span class="linenos">6</span><span class="nt">h</span><span class="p">:</span><span class="w">                  </span><span class="c1"># parses to &#39;h&#39; -&gt; [3, 4.0, &#39;i&#39;] where &#39;h&#39; is a string and [3, 4.0, &#39;i&#39;] is a list</span>
+<span class="linenos">7</span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="linenos">8</span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span>
+<span class="linenos">9</span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i</span>
+</pre></div>
+</div>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
+<p>Yaml supports the definition of variables:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1"># Definition of variables</span>
+<span class="linenos">2</span><span class="nt">j</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;name_of_the_variable</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">780e-9</span>
+<span class="linenos">3</span><span class="nt">k</span><span class="p">:</span><span class="w"> </span><span class="nv">*name_of_the_variable</span>
+</pre></div>
+</div>
+<p>The first line defines the mapping <code class="docutils literal notranslate"><span class="pre">'j'</span> <span class="pre">-&gt;</span> <span class="pre">780e-9</span></code> and creates a variable <code class="docutils literal notranslate"><span class="pre">name_of_the_variable</span></code> which points to the value <code class="docutils literal notranslate"><span class="pre">780e-9</span></code>. The second line defines the mapping <code class="docutils literal notranslate"><span class="pre">'k'</span> <span class="pre">-&gt;</span> <span class="pre">780e-9</span></code> by using the variable <code class="docutils literal notranslate"><span class="pre">name_of_the_variable</span></code>.</p>
+</section>
+<section id="math-expressions">
+<h2>Math expressions<a class="headerlink" href="#math-expressions" title="Link to this heading">#</a></h2>
+<p>In addition to the standard yaml syntax, the parser also supports the evaluation of simple mathematical expressions via the custom <code class="docutils literal notranslate"><span class="pre">!eval</span></code> tag. <code class="docutils literal notranslate"><span class="pre">!eval</span></code> takes a list of 1 or 2 values, the first being a mathematical expression to be evaluated and the second a dictionary of variables to serve the script. As before, the list can be given in a single line as well as in multiple ones.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Evaluates 1+2 and sets l -&gt; 3</span>
+<span class="linenos"> 2</span><span class="nt">l</span><span class="p">:</span><span class="w"> </span><span class="kt">!eval</span>
+<span class="linenos"> 3</span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1+2</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># Eval has access to all the standard operators (+ - * / ** // %) and the square root via sqrt</span>
+<span class="linenos"> 6</span><span class="nt">m</span><span class="p">:</span><span class="w"> </span><span class="kt">!eval</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">((((4-(2+1))*10/2)//2)**2)%3+sqrt(2)</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># Evaluates the expression and sets m -&gt; sqrt(2)+1</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1"># Eval has access to the constants pi, c, hbar</span>
+<span class="linenos"> 9</span><span class="nt">n</span><span class="p">:</span><span class="w"> </span><span class="kt">!eval</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">2*pi</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="c1"># Eval can be used to define complex values</span>
+<span class="linenos">12</span><span class="nt">o</span><span class="p">:</span><span class="w"> </span><span class="kt">!eval</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">1+2j</span><span class="w"> </span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>Additional variables can be given to <code class="docutils literal notranslate"><span class="pre">!eval</span></code> through a dictionary in the second parameter. For example the variable <code class="docutils literal notranslate"><span class="pre">name_of_the_variable</span></code> that we defined earlier:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">p</span><span class="p">:</span><span class="w"> </span><span class="kt">!eval</span>
+<span class="linenos">2</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2*pi*c/wavelength</span>
+<span class="linenos">3</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">wavelength</span><span class="p">:</span><span class="w"> </span><span class="nv">*name_of_the_variable</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The expression gets evaluated by python. Reserved keywords like <code class="docutils literal notranslate"><span class="pre">lambda</span></code> cannot be used in the <code class="docutils literal notranslate"><span class="pre">!eval</span></code> expression</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">!eval</span></code> tag has also access to the <a class="reference internal" href="../stubs/torchgpe.utils.potentials.linear_ramp.html#torchgpe.utils.potentials.linear_ramp" title="torchgpe.utils.potentials.linear_ramp"><code class="xref py py-func docutils literal notranslate"><span class="pre">linear_ramp()</span></code></a>, <a class="reference internal" href="../stubs/torchgpe.utils.potentials.quench.html#torchgpe.utils.potentials.quench" title="torchgpe.utils.potentials.quench"><code class="xref py py-func docutils literal notranslate"><span class="pre">quench()</span></code></a> and <a class="reference internal" href="../stubs/torchgpe.utils.potentials.s_ramp.html#torchgpe.utils.potentials.s_ramp" title="torchgpe.utils.potentials.s_ramp"><code class="xref py py-func docutils literal notranslate"><span class="pre">s_ramp()</span></code></a> functions to allow for the convenient definition of time dependent variables:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nt">pump_strength</span><span class="p">:</span><span class="w"> </span><span class="kt">!eval</span>
+<span class="linenos">2</span><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linear_ramp(0, 0, 1, 5e-3)</span><span class="w"> </span><span class="c1"># linear ramp from 0 to 1 in 5 ms</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="extending_torchgpe.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced usage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="extending_torchgpe.custom_potentials.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Defining custom potentials</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#math-expressions">Math expressions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Quantum Optics group @ ETH Zurich.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

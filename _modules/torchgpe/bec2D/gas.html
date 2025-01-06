@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>torchgpe.bec2D.gas &#8212; TorchGPE 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/style.css?v=d110ab36" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/torchgpe/bec2D/gas';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">TorchGPE package documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://www.quantumoptics.ethz.ch">
+    Quantum Optics group
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/torchgpe" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qo-eth/TorchGPE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://www.quantumoptics.ethz.ch">
+    Quantum Optics group
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/torchgpe" title="PyPI" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-box fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">PyPI</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/qo-eth/TorchGPE" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">torchgpe.bec2D.gas</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for torchgpe.bec2D.gas</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="kn">import</span> <span class="n">pad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">spconsts</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.potentials</span><span class="w"> </span><span class="kn">import</span> <span class="n">Zero</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_wavefunction</span><span class="p">,</span> <span class="n">ftn</span><span class="p">,</span> <span class="n">iftn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.elements</span><span class="w"> </span><span class="kn">import</span> <span class="n">elements_dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.potentials</span><span class="w"> </span><span class="kn">import</span> <span class="n">Potential</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.propagation</span><span class="w"> </span><span class="kn">import</span> <span class="n">imaginary_time_propagation</span><span class="p">,</span> <span class="n">real_time_propagation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.callbacks</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callback</span>
+
+<span class="n">UPDATED_PSI</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">UPDATED_PSIK</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">UPDATED_BOTH</span> <span class="o">=</span> <span class="mi">2</span>
+
+
+<div class="viewcode-block" id="Gas">
+<a class="viewcode-back" href="../../../api/gas.html#torchgpe.bec2D.gas.Gas">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Gas</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Quantum gas.</span>
+
+<span class="sd">    The parameters :py:attr:`N_grid` and :py:attr:`grid_size` specify a computational grid on which the wavefunction</span>
+<span class="sd">    is defined and evolved. :class:`Gas` exposes methods to perform real time propagation and to compute the ground </span>
+<span class="sd">    state&#39;s wave function via imaginary time propagation.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        element (str): Optional. The element the gas is made of. Defaults to &quot;87Rb&quot;.</span>
+<span class="sd">        N_particles (int): Optional. The number of particles in the gas. Defaults to :math:`10^6`.</span>
+<span class="sd">        N_grid (int): Optional. The number of points on each side of the computational grid. Defaults to :math:`2^8`.</span>
+<span class="sd">        grid_size (float): Optional. The side of the computational grid. Defaults to :math:`10^{-6}`.</span>
+<span class="sd">        device (torch.device or None): Optional. The device where to store tensors. Defaults to None, meaning that GPU will be used if available.</span>
+<span class="sd">        float_dtype (:py:attr:`torch.dtype`): Optional. The dtype used to represent floating point numbers. Defaults to :py:attr:`torch.double`.</span>
+<span class="sd">        complex_dtype (:py:attr:`torch.dtype`): Optional. The dtype used to represent complex numbers. Defaults to :py:attr:`torch.complex128`.</span>
+<span class="sd">        adimensionalization_length (float): Optional. The unit of length to be used during the simulations. Defaults to :math:`10^{-6}`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;87Rb&quot;</span><span class="p">,</span> <span class="n">N_particles</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e6</span><span class="p">),</span>
+                 <span class="n">N_grid</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">8</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span>
+                 <span class="n">device</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">float_dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">double</span><span class="p">,</span> <span class="n">complex_dtype</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">complex128</span><span class="p">,</span> <span class="n">adimensionalization_length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="c1">#: str: The element the gas is made of.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">element</span>
+        <span class="c1">#: float: The mass of the gas. This is automatically derived from the :py:obj:`~Gas.element` parameter.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;m&quot;</span><span class="p">]</span> 
+        <span class="c1">#: float: The pulse of the :math:`d_2` line. This is automatically derived from the :py:obj:`~Gas.element` parameter.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d2_pulse</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;omega d2&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">N_particles</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">(</span><span class="n">N_particles</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The number of particles must be an integer&quot;</span><span class="p">)</span>
+        <span class="c1">#: int: The number of particles in the gas.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N_particles</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">N_particles</span><span class="p">)</span>
+
+        <span class="c1"># If no custom device has been specified, use GPU if available</span>
+        <span class="c1">#: torch.device: The device where to store tensors.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span> <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span>
+            <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+
+        <span class="c1">#: torch.dtype: The dtype used to represent floating point numbers.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">float_dtype</span> <span class="o">=</span> <span class="n">float_dtype</span>
+        <span class="c1">#: torch.dtype: The dtype used to represent complex numbers.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">complex_dtype</span> <span class="o">=</span> <span class="n">complex_dtype</span>
+
+        <span class="c1"># Adimensionalization length and pulse to do calculations with pure numbers</span>
+        <span class="c1">#: float: Adimensionalization length used to work with pure numbers.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adim_length</span> <span class="o">=</span> <span class="n">adimensionalization_length</span>
+        <span class="c1">#: float: Adimensionalization pulse used to work with pure numbers. Its value is :math:`\frac{\hbar}{m l^2}`, where :math:`m` is the mass and :math:`l` the adimensionalization length.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adim_pulse</span> <span class="o">=</span> <span class="n">spconsts</span><span class="o">.</span><span class="n">hbar</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">adim_length</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># Create the grid in adimenisonalized units</span>
+        <span class="c1">#: float: The side of the computational grid along the :mathx axis in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_size_x</span> <span class="o">=</span> <span class="n">grid_size</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">adim_length</span>
+        <span class="c1">#: float: The side of the computational grid along the y axis in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_size_y</span> <span class="o">=</span> <span class="n">grid_size</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">adim_length</span>
+        <span class="c1">#: int: The number of points on each side of the computational grid.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">N_grid</span><span class="p">)</span>
+
+        <span class="c1"># Grid in real space</span>
+        <span class="c1"># The grid is centered in 0, with a total side length of grid_size/adim_length.</span>
+        <span class="c1"># The total grid is made of N_grid**2 points</span>
+        
+        <span class="c1">#: torch.Tensor: The vector of adimensionalized grid coordinates along the :math:`x` axis.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_size_x</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_size_x</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">float_dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="c1">#: torch.Tensor: The vector of adimensionalized grid coordinates along the :math:`y` axis.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_size_y</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_size_y</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">float_dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="c1">#: float: The distance between two consecutive points of the grid along the :math:`x` axis in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1">#: float: The distance between two consecutive points of the grid along the :math:`y` axis in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">coordinates</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+        <span class="c1">#: torch.Tensor: The matrix of :math:`x` coordinates of the grid in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1">#: torch.Tensor: The matrix of :math:`y` coordinates of the grid in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">coordinates</span>
+
+        <span class="c1"># Grid in momentum space</span>
+        <span class="c1">#: torch.Tensor: The vector of adimensionalized momenta along the :math:`kx` axis.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kx</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">float_dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">))</span>
+        <span class="c1">#: torch.Tensor: The vector of adimensionalized momenta along the :math:`ky` axis.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ky</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dy</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">float_dtype</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">))</span>
+        <span class="c1">#: float: The distance between two consecutive points of the grid along the :math:`kx` axis in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dkx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">kx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1">#: float: The distance between two consecutive points of the grid along the :math:`ky` axis in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dky</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ky</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">ky</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">momenta</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ky</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+        <span class="c1">#: torch.Tensor: The matrix of :math:`kx` coordinates of the grid in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Kx</span> <span class="o">=</span> <span class="n">momenta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1">#: torch.Tensor: The matrix of :math:`ky` coordinates of the grid in adimensionalized units.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ky</span> <span class="o">=</span> <span class="n">momenta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">momenta</span>
+
+        <span class="c1"># Create the wave functions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_psi</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_psik</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Kx</span><span class="p">)</span>
+        <span class="c1"># Specifies the last updated wave function (psi or psik)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Gas.ground_state">
+<a class="viewcode-back" href="../../../stubs/torchgpe.bec2D.gas.Gas.ground_state.html#torchgpe.bec2D.gas.Gas.ground_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ground_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">potentials</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Potential</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">time_step</span><span class="p">:</span> <span class="nb">complex</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1e-6j</span><span class="p">,</span> <span class="n">N_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e3</span><span class="p">),</span> <span class="n">callbacks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callback</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">leave_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the ground state&#39;s wave function.</span>
+
+<span class="sd">        Use the split-step Fourier method with imaginary time propagation (ITP) to compute the ground state&#39;s wave function of the gas. </span>
+<span class="sd">        The potentials acting on the system are specified via the :py:attr:`potentials` parameter. </span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            potentials (List[:class:`~gpe.utils.potentials.Potential`]): Optional. The list of potentials acting on the system. Defaults to [].</span>
+<span class="sd">            time_step (complex): Optional. The time step to be used in the ITP. Defaults to :math:`-10^{-6}\,i`.</span>
+<span class="sd">            N_iterations (int): Optional. The number of steps of ITP to perform. Defaults to :math:`10^{3}`.</span>
+<span class="sd">            callbacks (List[:class:`~gpe.utils.callbacks.Callback`]): Optional. List of callbacks to be evaluated during the evolution. Defaults to [].</span>
+<span class="sd">            leave_progress_bar (bool): Optional. Whether to leave the progress bar on screen after the propagation ends. Defaults to True.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If time dependent potentials are specified </span>
+<span class="sd">            Exception: If the time step is not a purely imaginary number</span>
+<span class="sd">            Exception: If the imaginary part of the time step is not positive</span>
+<span class="sd">            Exception: If neither the wave function in real space nor in the one in momentum space have been initialized</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># Initial setup of the potentials</span>
+        <span class="k">for</span> <span class="n">potential</span> <span class="ow">in</span> <span class="n">potentials</span><span class="p">:</span>
+            <span class="n">potential</span><span class="o">.</span><span class="n">set_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">potential</span><span class="o">.</span><span class="n">on_propagation_begin</span><span class="p">()</span>
+
+        <span class="c1"># --- Process parameters ---</span>
+
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">potential</span><span class="o">.</span><span class="n">is_time_dependent</span> <span class="k">for</span> <span class="n">potential</span> <span class="ow">in</span> <span class="n">potentials</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Time dependent potentials can&#39;t be used in imaginary time propagation&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">time_step</span><span class="o">.</span><span class="n">real</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Imaginary time propagation requires a purely imaginary time step&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">time_step</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;The imaginary part of the time step must be negative&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;The initial wave function must be initialized by either setting the psi or psik attributes&quot;</span><span class="p">)</span>
+
+        <span class="n">N_iterations</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">N_iterations</span><span class="p">)</span>
+
+        <span class="c1"># Adimensionalize the time_step</span>
+        <span class="n">adim_time_step</span> <span class="o">=</span> <span class="n">time_step</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">adim_pulse</span>
+
+        <span class="c1"># If no potential has been specified, use an identically zero one</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">potentials</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">potentials</span> <span class="o">=</span> <span class="p">[</span><span class="n">Zero</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span>
+
+        <span class="c1"># Generate a dictionary of runtime settings for the simulations to be given</span>
+        <span class="c1"># to the callbacks. This list is not complete at the moment</span>
+        <span class="n">propagation_parameters</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;potentials&quot;</span><span class="p">:</span> <span class="n">potentials</span><span class="p">,</span>
+            <span class="s2">&quot;time_step&quot;</span><span class="p">:</span> <span class="n">time_step</span><span class="p">,</span>
+            <span class="s2">&quot;N_iterations&quot;</span><span class="p">:</span> <span class="n">N_iterations</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Initial setup of the callbacks</span>
+        <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="p">:</span>
+            <span class="n">callback</span><span class="o">.</span><span class="n">set_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">callback</span><span class="o">.</span><span class="n">set_propagation_params</span><span class="p">(</span><span class="n">propagation_parameters</span><span class="p">)</span>
+
+        <span class="n">imaginary_time_propagation</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">potentials</span><span class="p">,</span> <span class="n">adim_time_step</span><span class="p">,</span> <span class="n">N_iterations</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">,</span> <span class="n">leave_progress_bar</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Gas.propagate">
+<a class="viewcode-back" href="../../../stubs/torchgpe.bec2D.gas.Gas.propagate.html#torchgpe.bec2D.gas.Gas.propagate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">propagate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">final_time</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">time_step</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="n">potentials</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Potential</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">callbacks</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callback</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">leave_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Propagate the wave function in real time.</span>
+
+<span class="sd">        Use the split-step Fourier method with real time propagation (RTP) to propagate the gas wave function to :py:attr:`final_time`. </span>
+<span class="sd">        The potentials acting on the system are specified via the :py:attr:`potentials` parameter. </span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            The time step is adjusted such that :py:attr:`final_time` is always reached.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            final_time (float): The final time up to which the wave function whould be propagated.</span>
+<span class="sd">            time_step (float): Optional. The time step to be used in the RTP. Defaults to :math:`10^{-6}`.</span>
+<span class="sd">            potentials (List[:class:`~gpe.utils.potentials.Potential`]): Optional. The list of potentials acting on the system. Defaults to [].</span>
+<span class="sd">            callbacks (List[:class:`~gpe.utils.callbacks.Callback`]): Optional. List of callbacks to be evaluated during the evolution. Defaults to [].</span>
+<span class="sd">            leave_progress_bar (bool): Optional. Whether to leave the progress bar on screen after the propagation ends. Defaults to True.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception: If the time step is not a floating point number</span>
+<span class="sd">            Exception: If the time step is not positive</span>
+<span class="sd">            Exception: If neither the wave function in real space nor in the one in momentum space have been initialized</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Initial setup of the potentials</span>
+        <span class="k">for</span> <span class="n">potential</span> <span class="ow">in</span> <span class="n">potentials</span><span class="p">:</span>
+            <span class="n">potential</span><span class="o">.</span><span class="n">set_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">potential</span><span class="o">.</span><span class="n">on_propagation_begin</span><span class="p">()</span>
+
+        <span class="c1"># --- Process parameters ---</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">time_step</span><span class="p">),</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;The provided time step is not a floating point number.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">time_step</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Propagation requires a positive time step&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Adjust the time step such that the final time is always reached</span>
+        <span class="n">N_iterations</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">final_time</span><span class="o">/</span><span class="n">time_step</span><span class="p">)</span>
+        <span class="n">time_step</span> <span class="o">=</span> <span class="n">final_time</span><span class="o">/</span><span class="n">N_iterations</span>
+
+        <span class="c1"># Array of times to be passed to the time dependent potentials</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">final_time</span><span class="p">,</span> <span class="n">N_iterations</span><span class="p">)</span>
+
+        <span class="c1"># Adimensionalize the time_step</span>
+        <span class="n">adim_time_step</span> <span class="o">=</span> <span class="n">time_step</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">adim_pulse</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;The initial wave function must be initialized by setting either the psi or psik attributes&quot;</span><span class="p">)</span>
+
+        <span class="c1"># If no potential has been specified, use an identically zero one</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">potentials</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">potentials</span> <span class="o">=</span> <span class="p">[</span><span class="n">Zero</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span>
+
+        <span class="c1"># Generate a dictionary of runtime settings for the simulations to be given</span>
+        <span class="c1"># to the callbacks. This list is not complete at the moment</span>
+        <span class="n">propagation_parameters</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;potentials&quot;</span><span class="p">:</span> <span class="n">potentials</span><span class="p">,</span>
+            <span class="s2">&quot;time_step&quot;</span><span class="p">:</span> <span class="n">time_step</span><span class="p">,</span>
+            <span class="s2">&quot;N_iterations&quot;</span><span class="p">:</span> <span class="n">N_iterations</span><span class="p">,</span>
+            <span class="s2">&quot;final_time&quot;</span><span class="p">:</span> <span class="n">final_time</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Initial setup of the callbacks</span>
+        <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="p">:</span>
+            <span class="n">callback</span><span class="o">.</span><span class="n">set_gas</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">callback</span><span class="o">.</span><span class="n">set_propagation_params</span><span class="p">(</span><span class="n">propagation_parameters</span><span class="p">)</span>
+
+        <span class="n">real_time_propagation</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">potentials</span><span class="p">,</span> <span class="n">adim_time_step</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">,</span> <span class="n">leave_progress_bar</span><span class="p">)</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The density of the gas in real space</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psi</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">densityk</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The density of the gas in momentum space</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psik</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">phase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The phase (in radians) of the real space wave function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psi</span><span class="p">)</span>
+
+    <span class="c1"># --- Manage the update of psi and psik ---</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">psi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The real space wave function of the gas.</span>
+
+<span class="sd">        Returns the most updated real space wave function of the gas. If the last updated wave function is the one in momentum space, </span>
+<span class="sd">        computes and stores the real space wave function as its iFFT before returning it. </span>
+<span class="sd">        When a value is assigned to psi, takes care of the normalization before storing it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If the last updated wave function is psik, compute psi</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="o">==</span> <span class="n">UPDATED_PSIK</span><span class="p">:</span>
+            <span class="c1"># Take into account that psik is padded</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psi</span> <span class="o">=</span> <span class="n">iftn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_psik</span><span class="p">)[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="o">=</span> <span class="n">UPDATED_BOTH</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_psi</span>
+
+    <span class="nd">@psi</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">psi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">complex_dtype</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">complex_dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_psi</span> <span class="o">=</span> <span class="n">normalize_wavefunction</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dy</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="o">=</span> <span class="n">UPDATED_PSI</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">psik</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The momentum space wave function of the gas.</span>
+
+<span class="sd">        Returns the most updated momentum space wave function of the gas. If the last updated wave function is the one in real space, </span>
+<span class="sd">        computes and stores the momentum space wave function as its iFFT before returning it. </span>
+<span class="sd">        When a value is assigned to psik, takes care of the normalization before storing it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># If the last updated wave function is psi, compute psik</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="o">==</span> <span class="n">UPDATED_PSI</span><span class="p">:</span>
+            <span class="c1"># Before computing the FFT, pad psik</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">psik</span> <span class="o">=</span> <span class="n">ftn</span><span class="p">(</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_psi</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N_grid</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="o">=</span> <span class="n">UPDATED_BOTH</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_psik</span>
+
+    <span class="nd">@psik</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">psik</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">complex_dtype</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">complex_dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_psik</span> <span class="o">=</span> <span class="n">normalize_wavefunction</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dkx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dky</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated_wavefunction</span> <span class="o">=</span> <span class="n">UPDATED_PSIK</span>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The coordinates of the gas</span>
+
+<span class="sd">        Returns a tuple containing the coordinates of the gas in real space.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">momenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The momenta of the gas</span>
+
+<span class="sd">        Returns a tuple containing the momenta of the gas in momentum space.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Kx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ky</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Quantum Optics group @ ETH Zurich.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
