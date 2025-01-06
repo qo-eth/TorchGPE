@@ -80,6 +80,23 @@ def quench(v0=1, v1=0, quench_time=1):
         """
     return lambda t: v0 if t < quench_time else v1
 
+
+def probe_pulse(amplitude, detuning, t0 = 0, phase = 0):
+    """Implements a probe pulse with a givem amplitude, detuning, and phase.
+
+    Args:
+        amplitude (float): The amplitude of the pulse.
+        detuning (float): The detuning between the cavity's transverse pump frequency and the probe frequency.
+        t0 (float, optional): The time at which the pulse starts. Defaults to :math:`0`.
+        phase (float, optional): The phase of the pulse. Defaults to :math:`0`.
+
+    Returns:
+        float: The value of the pulse at time :math:`t`
+        """
+    omega = 2*torch.pi*detuning
+    return lambda t: 0 if t<t0 else amplitude * torch.exp(1j*(omega*t + phase))
+
+
 # --- Potential base classes ---
 
 
